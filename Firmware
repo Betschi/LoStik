@@ -1,0 +1,22 @@
+Instructions for updating the RN2483 firmware in LoStik.
+
+Varinate 1: LoRa Development Utility by Microchip
+1. Download and install the tool from here: http://ww1.microchip.com/downloads/en/DeviceDoc/LoRaSuite-windows-1.0.exe
+2. Download the latest RN2483 firmware: http://ww1.microchip.com/downloads/en/DeviceDoc/RN2483_1.0.5_Oct%2031_2018_15.06.52.zip
+3. Make sure you are using the file "RN2483_Parser.production.hex" which is located in the folder "offset".
+   DON'T use the file "RN2483_Parser.production.unified.hex" wich is located in the folder "combined"
+   (The file "RN2483_Parser.production.unified.hex" is just usable for the hardware programing tool PICKit 3 or 4 from Microchip.
+    If you are using this hex-file with the LoRa Development Utility, the frimware programing process will crash.
+    In such case, the LoStik and the RN2483 will not work anymore!
+    Background: This file contains the bootloader and will overwrite the loader program in the RN2483.)
+    
+Variant 2: PICKit 3 (or 4)
+> Variant 2 ist just necessary if you have crashed your LoStik with Variant 1
+1. Open your LoStik and mount a plug connector (see picture)
+2. Connect your LoStik to USB power
+3. Connect the PICKit 3 programmer with your LoStik (make sure, you connect pin 1 with pin 1)
+4. Set the target VDD source to "Force Target" (see picture)
+5. Check the communication between PICKit3 and RN2483 (see picture)
+   The tool should find the device "PIC18LF46K22" which is mounted in the RN2483
+6. Chose the hex-file: RN2483_Parser.production.unified.hex (which is located in the folder "combined")
+7. Press "Write" and RN2483 should be programmed.
